@@ -1,0 +1,66 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://addons/misc_utils/actions/WaitAction.gd" type="Script" id=1]
+[ext_resource path="res://nodes/actions/Cutscene.gd" type="Script" id=2]
+[ext_resource path="res://sprites/portraits/kayleigh.png" type="Texture" id=3]
+[ext_resource path="res://nodes/actions/MessageDialogAction.gd" type="Script" id=4]
+[ext_resource path="res://nodes/actions/MenuDialogAction.gd" type="Script" id=5]
+[ext_resource path="res://sprites/portraits/kayleigh_blushing.png" type="Texture" id=6]
+[ext_resource path="res://music/release/kayleigh_theme_2.ogg" type="AudioStream" id=7]
+[ext_resource path="res://sprites/portraits/kayleigh_sad_tears.png" type="Texture" id=8]
+[ext_resource path="res://nodes/actions/ChangeMusicAction.gd" type="Script" id=9]
+[ext_resource path="res://sprites/portraits/kayleigh_sad.png" type="Texture" id=10]
+[ext_resource path="res://nodes/actions/RelationshipUpAction.gd" type="Script" id=11]
+[ext_resource path="res://data/quests/partner_quests/KayleighQuest2.tscn" type="PackedScene" id=12]
+
+[node name="Cutscene" type="Node"]
+script = ExtResource( 2 )
+require_partner_id = "cat_custompartner:kayleigh"
+min_partner_relationship_level = 1
+max_partner_relationship_level = 1
+require_partner_ready_for_relationship_level_up = true
+require_quest = ExtResource( 12 )
+require_quest_state = 8
+priority = 60
+
+[node name="ChangeMusicAction" type="Node" parent="."]
+script = ExtResource( 9 )
+music = ExtResource( 7 )
+
+[node name="MessageDialogAction5" type="Node" parent="ChangeMusicAction"]
+script = ExtResource( 4 )
+portrait = ExtResource( 10 )
+title = "KAYLEIGH_NAME"
+messages = [ "KAYLEIGH_QUEST2_PART5_KAYLEIGH9", "KAYLEIGH_QUEST2_PART5_KAYLEIGH10", "KAYLEIGH_QUEST2_PART5_KAYLEIGH11", "KAYLEIGH_QUEST2_PART5_KAYLEIGH12", "KAYLEIGH_QUEST2_PART5_KAYLEIGH13", "KAYLEIGH_QUEST2_PART5_KAYLEIGH14", "KAYLEIGH_QUEST2_PART5_KAYLEIGH15" ]
+close_after = false
+
+[node name="MessageDialogAction6" type="Node" parent="ChangeMusicAction"]
+script = ExtResource( 4 )
+portrait = ExtResource( 8 )
+title = "KAYLEIGH_NAME"
+messages = [ "KAYLEIGH_QUEST2_PART5_KAYLEIGH16", "KAYLEIGH_QUEST2_PART5_KAYLEIGH17" ]
+wait_for_confirm = false
+close_after = false
+
+[node name="MenuDialogAction" type="Node" parent="ChangeMusicAction/MessageDialogAction6"]
+script = ExtResource( 5 )
+menu_options = [ "KAYLEIGH_QUEST2_PART5_KAYLEIGH17_OPTION1", "KAYLEIGH_QUEST2_PART5_KAYLEIGH17_OPTION2" ]
+always_succeed = true
+
+[node name="MessageDialogAction7" type="Node" parent="ChangeMusicAction"]
+script = ExtResource( 4 )
+portrait = ExtResource( 6 )
+title = "KAYLEIGH_NAME"
+messages = [ "KAYLEIGH_QUEST2_PART5_KAYLEIGH18" ]
+
+[node name="WaitAction2" type="Node" parent="ChangeMusicAction"]
+script = ExtResource( 1 )
+
+[node name="MessageDialogAction8" type="Node" parent="ChangeMusicAction"]
+script = ExtResource( 4 )
+portrait = ExtResource( 3 )
+title = "KAYLEIGH_NAME"
+messages = [ "KAYLEIGH_QUEST2_PART5_KAYLEIGH19", "KAYLEIGH_QUEST2_PART5_KAYLEIGH20", "KAYLEIGH_QUEST2_PART5_KAYLEIGH21" ]
+
+[node name="RelationshipUpAction" type="Node" parent="."]
+script = ExtResource( 11 )

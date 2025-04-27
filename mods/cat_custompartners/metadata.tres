@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://mods/cat_custompartners/mod.gd" type="Script" id=1]
+[ext_resource path="res://mods/cat_custompartners/mod_strings.en.translation" type="Translation" id=2]
+
+[resource]
+script = ExtResource( 1 )
+id = "cat_custompartners"
+name = "MOD_CAT_CUSTOMPARTNERS_NAME"
+version_code = 0
+version_string = "1.0"
+author = "cat"
+save_file_format_tag = ""
+save_file_format_tag_version = 0
+network_protocol_tag = ""
+disable_network_multiplayer = false
+modified_files = [  ]
+modified_dirs = [  ]
+translations = [ ExtResource( 2 ) ]

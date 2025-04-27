@@ -1,0 +1,448 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://ui/battle_theme.tres" type="Theme" id=1]
+[ext_resource path="res://nodes/layered_sprite/BattleHumanSprite.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/icons/types/element_beast.png" type="Texture" id=3]
+[ext_resource path="res://ui/fonts/regular/regular_50.tres" type="DynamicFont" id=4]
+[ext_resource path="res://nodes/menus/AutoFocusConnector.gd" type="Script" id=5]
+[ext_resource path="res://nodes/menus/InputMappedButton.gd" type="Script" id=6]
+[ext_resource path="res://menus/party/RelationshipMeter.tscn" type="PackedScene" id=7]
+[ext_resource path="res://menus/party_character/StatHex.tscn" type="PackedScene" id=8]
+[ext_resource path="res://nodes/menus/FocusIndicator.tscn" type="PackedScene" id=9]
+[ext_resource path="res://nodes/misc_shaders/static_2d.gdshader" type="Shader" id=10]
+[ext_resource path="res://menus/FullWidthButtonPanel.tscn" type="PackedScene" id=11]
+[ext_resource path="res://nodes/menus/AutoScrollContainer.gd" type="Script" id=12]
+[ext_resource path="res://mods/cat_custompartners/load_partner_menu.gd" type="Script" id=14]
+[ext_resource path="res://menus/title/default_file_thumbnail.png" type="Texture" id=15]
+[ext_resource path="res://menus/transparent.png" type="Texture" id=16]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 1, 1, 1 )
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_size = 1
+shadow_offset = Vector2( -20, 20 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 10 )
+shader_param/amount = 1.0
+
+[sub_resource type="StyleBoxFlat" id=14]
+content_margin_left = 20.0
+content_margin_right = 20.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_bottom_left = 80
+corner_detail = 1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_size = 1
+shadow_offset = Vector2( -20, 20 )
+
+[sub_resource type="StyleBoxFlat" id=15]
+content_margin_right = 100.0
+bg_color = Color( 0.670588, 0.458824, 0.909804, 1 )
+corner_radius_bottom_right = 100
+corner_detail = 1
+expand_margin_left = 20.0
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxEmpty" id=8]
+content_margin_right = 173.0
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_top = 97.0
+content_margin_bottom = 97.0
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 20
+border_width_right = 20
+border_color = Color( 0.670588, 0.458824, 0.909804, 1 )
+expand_margin_top = 200.0
+expand_margin_bottom = 200.0
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[node name="PartnerLoadMenu" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_vertical_guides_": [  ]
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer"]
+margin_right = 1114.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -320.0
+margin_top = -380.0
+margin_right = 320.0
+margin_bottom = 380.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer"]
+margin_right = 640.0
+margin_bottom = 360.0
+rect_min_size = Vector2( 640, 360 )
+size_flags_horizontal = 4
+custom_styles/panel = SubResource( 2 )
+
+[node name="FileThumbnail" type="TextureRect" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PanelContainer"]
+margin_right = 640.0
+margin_bottom = 360.0
+rect_min_size = Vector2( 640, 360 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 15 )
+expand = true
+stretch_mode = 7
+
+[node name="PortraitClip" type="Control" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PanelContainer"]
+margin_right = 640.0
+margin_bottom = 360.0
+rect_clip_content = true
+
+[node name="PortraitOffset" type="Control" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PanelContainer/PortraitClip"]
+anchor_left = 0.4
+anchor_right = 0.4
+grow_horizontal = 0
+
+[node name="PortraitScale" type="Control" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PanelContainer/PortraitClip/PortraitOffset"]
+rect_scale = Vector2( 0.667, 0.667 )
+
+[node name="PartnerPortrait" type="TextureRect" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PanelContainer/PortraitClip/PortraitOffset/PortraitScale"]
+unique_name_in_owner = true
+grow_horizontal = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+stretch_mode = 3
+
+[node name="PartnerSpriteContainer" type="Control" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PanelContainer"]
+margin_left = 200.0
+margin_top = 60.0
+margin_right = 440.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 240, 240 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PartnerSprite" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PanelContainer/PartnerSpriteContainer" instance=ExtResource( 2 )]
+unique_name_in_owner = true
+scale = Vector2( 5, 5 )
+
+[node name="Static" type="TextureRect" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PanelContainer"]
+visible = false
+material = SubResource( 3 )
+margin_right = 640.0
+margin_bottom = 360.0
+rect_min_size = Vector2( 640, 360 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 16 )
+expand = true
+
+[node name="PartnerDataContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer"]
+margin_top = 360.0
+margin_right = 640.0
+margin_bottom = 760.0
+rect_min_size = Vector2( 640, 400 )
+custom_styles/panel = SubResource( 14 )
+
+[node name="MonsterContainer" type="Control" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PartnerDataContainer"]
+margin_left = 20.0
+margin_top = 10.0
+margin_right = 620.0
+margin_bottom = 390.0
+
+[node name="MonsterSticker" type="TextureRect" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PartnerDataContainer/MonsterContainer"]
+unique_name_in_owner = true
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+size_flags_vertical = 0
+stretch_mode = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PartnerDataContainer"]
+margin_left = 20.0
+margin_top = 10.0
+margin_right = 620.0
+margin_bottom = 390.0
+
+[node name="PartnerDataFilledContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PartnerDataContainer/VBoxContainer2"]
+margin_right = 600.0
+margin_bottom = 364.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PartnerDataContainer/VBoxContainer2/PartnerDataFilledContainer"]
+margin_right = 600.0
+margin_bottom = 60.0
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PartnerDataContainer/VBoxContainer2/PartnerDataFilledContainer/HBoxContainer"]
+margin_right = 326.0
+margin_bottom = 60.0
+custom_styles/panel = SubResource( 15 )
+
+[node name="PartnerNameLabel" type="Label" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PartnerDataContainer/VBoxContainer2/PartnerDataFilledContainer/HBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+margin_right = 226.0
+margin_bottom = 60.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "PARTNER_NAME"
+
+[node name="PartnerLevelLabel" type="Label" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PartnerDataContainer/VBoxContainer2/PartnerDataFilledContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 523.0
+margin_right = 600.0
+margin_bottom = 60.0
+size_flags_horizontal = 10
+custom_colors/font_color = Color( 0.913725, 0.258824, 0.247059, 1 )
+text = "Lv 10"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PartnerDataContainer/VBoxContainer2/PartnerDataFilledContainer"]
+margin_top = 64.0
+margin_right = 600.0
+margin_bottom = 364.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PartnerDataContainer/VBoxContainer2/PartnerDataFilledContainer/HBoxContainer2"]
+margin_right = 296.0
+margin_bottom = 300.0
+size_flags_horizontal = 3
+
+[node name="RelationshipMeter" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PartnerDataContainer/VBoxContainer2/PartnerDataFilledContainer/HBoxContainer2/VBoxContainer" instance=ExtResource( 7 )]
+unique_name_in_owner = true
+margin_right = 250.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 250, 42 )
+mouse_filter = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PartnerDataContainer/VBoxContainer2/PartnerDataFilledContainer/HBoxContainer2/VBoxContainer"]
+margin_top = 46.0
+margin_right = 296.0
+margin_bottom = 106.0
+custom_constants/separation = 12
+
+[node name="TypeIconContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PartnerDataContainer/VBoxContainer2/PartnerDataFilledContainer/HBoxContainer2/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_right = 42.0
+margin_bottom = 60.0
+custom_constants/separation = 8
+
+[node name="TypeIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PartnerDataContainer/VBoxContainer2/PartnerDataFilledContainer/HBoxContainer2/VBoxContainer/HBoxContainer/TypeIconContainer"]
+margin_top = 9.0
+margin_right = 42.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 42, 42 )
+size_flags_vertical = 4
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 1
+
+[node name="TapeNameLabel" type="Label" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PartnerDataContainer/VBoxContainer2/PartnerDataFilledContainer/HBoxContainer2/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 54.0
+margin_right = 296.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "TRAFFIKRAB_NAME"
+clip_text = true
+
+[node name="StatHex" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PartnerDataContainer/VBoxContainer2/PartnerDataFilledContainer/HBoxContainer2" instance=ExtResource( 8 )]
+unique_name_in_owner = true
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 300.0
+margin_right = 600.0
+margin_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 300, 300 )
+stat_limits = [ 200, 200, 200, 200, 200, 200 ]
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PartnerDataContainer/VBoxContainer2"]
+margin_top = 368.0
+margin_right = 600.0
+margin_bottom = 380.0
+size_flags_vertical = 3
+
+[node name="LoadingLabel" type="Label" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PartnerDataContainer/VBoxContainer2/PanelContainer"]
+visible = false
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 620.0
+margin_bottom = 74.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "UI_LOAD_FILE_LOADING"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="EmptyLabel" type="Label" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PartnerDataContainer/VBoxContainer2/PanelContainer"]
+visible = false
+margin_left = 6.0
+margin_top = 43.0
+margin_right = 592.0
+margin_bottom = 113.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "UI_LOAD_FILE_EMPTY"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="CorruptLabel" type="Label" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer/PartnerDataContainer/VBoxContainer2/PanelContainer"]
+visible = false
+margin_left = 6.0
+margin_top = 43.0
+margin_right = 592.0
+margin_bottom = 113.0
+custom_colors/font_color = Color( 0.913725, 0.258824, 0.247059, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "UI_LOAD_FILE_INVALID"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 1118.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+rect_min_size = Vector2( 802, 0 )
+custom_styles/panel = SubResource( 8 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/PanelContainer"]
+margin_left = 99.0
+margin_right = 529.0
+margin_bottom = 1080.0
+size_flags_horizontal = 4
+size_flags_vertical = 3
+custom_styles/bg = SubResource( 9 )
+scroll_horizontal_enabled = false
+script = ExtResource( 12 )
+
+[node name="ScrollInterior" type="PanelContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/ScrollContainer"]
+margin_right = 430.0
+margin_bottom = 1080.0
+size_flags_horizontal = 4
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 4 )
+
+[node name="PartnerButtonContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/ScrollContainer/ScrollInterior"]
+unique_name_in_owner = true
+margin_left = 20.0
+margin_top = 97.0
+margin_right = 410.0
+margin_bottom = 983.0
+rect_min_size = Vector2( 390, 0 )
+script = ExtResource( 5 )
+preserve_focus_index = true
+focus_on_hover = true
+no_autofocus_if_disabled = true
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer/PanelContainer"]
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="FocusIndicator" parent="VBoxContainer/HBoxContainer/PanelContainer/Control" instance=ExtResource( 9 )]
+visible = false
+container_path = NodePath("../../ScrollContainer/ScrollInterior/PartnerButtonContainer")
+hide_when_focus_lost = false
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 1080.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+
+[node name="FullWidthButtonPanel" parent="." instance=ExtResource( 11 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 1018.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_horizontal = 9
+
+[node name="EraseButton" type="Button" parent="FullWidthButtonPanel/HBoxContainer" index="0"]
+margin_right = 305.0
+margin_bottom = 52.0
+focus_mode = 0
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 6 )
+custom_styles/normal = SubResource( 6 )
+text = "UI_LOAD_FILE_ERASE"
+expand_icon = true
+script = ExtResource( 6 )
+action = "ui_action_2"
+
+[node name="Control" type="Control" parent="FullWidthButtonPanel/HBoxContainer" index="1"]
+margin_left = 369.0
+margin_right = 780.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+
+[node name="PlayButton" type="Button" parent="FullWidthButtonPanel/HBoxContainer" index="2"]
+margin_left = 844.0
+margin_right = 1444.0
+margin_bottom = 52.0
+focus_mode = 0
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 6 )
+custom_styles/normal = SubResource( 6 )
+text = "UI_CAT_CUSTOMPARTNERS_LOAD_PARTNER"
+expand_icon = true
+script = ExtResource( 6 )
+action = "ui_accept"
+
+[node name="BackButton" type="Button" parent="FullWidthButtonPanel/HBoxContainer" index="3"]
+margin_left = 1508.0
+margin_right = 1752.0
+margin_bottom = 52.0
+focus_mode = 0
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 6 )
+custom_styles/normal = SubResource( 6 )
+text = "UI_BUTTON_BACK"
+expand_icon = true
+script = ExtResource( 6 )
+action = "ui_cancel"
+
+[connection signal="pressed" from="FullWidthButtonPanel/HBoxContainer/EraseButton" to="." method="_on_EraseButton_pressed"]
+[connection signal="pressed" from="FullWidthButtonPanel/HBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="FullWidthButtonPanel/HBoxContainer/BackButton" to="." method="cancel"]
+
+[editable path="FullWidthButtonPanel"]

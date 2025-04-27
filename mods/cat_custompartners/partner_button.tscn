@@ -1,0 +1,161 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://ui/battle_theme.tres" type="Theme" id=1]
+[ext_resource path="res://menus/party/TapeReel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/party/tape_behind.png" type="Texture" id=3]
+[ext_resource path="res://ui/party/tape_overlay.png" type="Texture" id=4]
+[ext_resource path="res://nodes/menus/ScaleToFitParent.gd" type="Script" id=5]
+[ext_resource path="res://mods/cat_custompartners/partner_button.gd" type="Script" id=6]
+[ext_resource path="res://ui/party/tape.png" type="Texture" id=7]
+
+[sub_resource type="StyleBoxFlat" id=11]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color( 0.952941, 0.929412, 0.847059, 1 )
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0.658824, 0.576471, 0.545098, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[node name="PartnerButton" type="TextureButton"]
+margin_right = 390.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 390, 250 )
+rect_pivot_offset = Vector2( 195, 125 )
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource( 1 )
+texture_normal = ExtResource( 7 )
+expand = true
+script = ExtResource( 6 )
+
+[node name="ScaleToFitParent" type="Control" parent="."]
+margin_right = 640.0
+margin_bottom = 410.0
+rect_min_size = Vector2( 320, 205 )
+rect_scale = Vector2( 0.609375, 0.609756 )
+mouse_filter = 2
+script = ExtResource( 5 )
+
+[node name="MonsterSticker" type="TextureRect" parent="ScaleToFitParent"]
+unique_name_in_owner = true
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+size_flags_vertical = 0
+stretch_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="ScaleToFitParent"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+custom_constants/margin_right = 32
+custom_constants/margin_top = 32
+custom_constants/margin_left = 32
+custom_constants/margin_bottom = 32
+
+[node name="PanelContainer" type="PanelContainer" parent="ScaleToFitParent/MarginContainer"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 608.0
+margin_bottom = 127.0
+rect_min_size = Vector2( 0, 95 )
+size_flags_vertical = 0
+custom_styles/panel = SubResource( 11 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScaleToFitParent/MarginContainer/PanelContainer"]
+margin_left = 20.0
+margin_top = 15.0
+margin_right = 556.0
+margin_bottom = 79.0
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScaleToFitParent/MarginContainer/PanelContainer/VBoxContainer"]
+margin_right = 536.0
+margin_bottom = 60.0
+
+[node name="PartnerNameLabel" type="Label" parent="ScaleToFitParent/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_right = 455.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "CAT_CUSTOMPARTNERS_DEFAULT_NAME"
+clip_text = true
+
+[node name="PartnerLevelLabel" type="Label" parent="ScaleToFitParent/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 459.0
+margin_right = 536.0
+margin_bottom = 60.0
+custom_colors/font_color = Color( 0.913725, 0.258824, 0.247059, 1 )
+text = "Lv 10"
+
+[node name="PanelContainer" type="PanelContainer" parent="ScaleToFitParent/MarginContainer/PanelContainer/VBoxContainer"]
+margin_top = 64.0
+margin_right = 536.0
+margin_bottom = 64.0
+custom_styles/panel = SubResource( 12 )
+
+[node name="Overlay" type="TextureRect" parent="ScaleToFitParent"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+
+[node name="ScaleToFitParent2" type="Control" parent="."]
+show_behind_parent = true
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 640, 410 )
+rect_scale = Vector2( 0.609375, 0.609756 )
+mouse_filter = 2
+script = ExtResource( 5 )
+
+[node name="BehindContainer" type="MarginContainer" parent="ScaleToFitParent2"]
+show_behind_parent = true
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 634.0
+margin_bottom = 406.0
+mouse_filter = 1
+custom_constants/margin_left = 1
+custom_constants/margin_bottom = 28
+
+[node name="TextureRect" type="TextureRect" parent="ScaleToFitParent2/BehindContainer"]
+margin_left = 121.0
+margin_top = 123.0
+margin_right = 508.0
+margin_bottom = 251.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource( 3 )
+
+[node name="Reels" type="Control" parent="ScaleToFitParent2/BehindContainer"]
+unique_name_in_owner = true
+margin_left = 1.0
+margin_right = 628.0
+margin_bottom = 374.0
+mouse_filter = 1
+
+[node name="LeftReel" parent="ScaleToFitParent2/BehindContainer/Reels" instance=ExtResource( 2 )]
+anchor_left = 0.294
+anchor_top = 0.5
+anchor_right = 0.294
+anchor_bottom = 0.5
+
+[node name="RightReel" parent="ScaleToFitParent2/BehindContainer/Reels" instance=ExtResource( 2 )]
+anchor_left = 0.707
+anchor_top = 0.5
+anchor_right = 0.707
+anchor_bottom = 0.5
+direction = -1

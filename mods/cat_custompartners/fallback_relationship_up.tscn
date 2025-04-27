@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://nodes/actions/Cutscene.gd" type="Script" id=1]
+[ext_resource path="res://nodes/actions/RelationshipUpAction.gd" type="Script" id=2]
+
+[node name="Cutscene" type="Node"]
+script = ExtResource( 1 )
+require_partner_id = "cat_custompartner"
+min_partner_relationship_level = 1
+max_partner_relationship_level = 4
+require_partner_ready_for_relationship_level_up = true
+priority = 10
+
+[node name="RelationshipUpAction" type="Node" parent="."]
+script = ExtResource( 2 )

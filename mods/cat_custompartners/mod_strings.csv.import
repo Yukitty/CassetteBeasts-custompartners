@@ -1,0 +1,17 @@
+[remap]
+
+importer="tccoxon.translation_plus"
+type="Resource"
+path="res://.import/mod_strings.csv-be864adf088566196ff4c5c2ded3bcf0.res"
+
+[deps]
+
+source_file="res://mods/cat_custompartners/mod_strings.csv"
+dest_files=[ "res://.import/mod_strings.csv-be864adf088566196ff4c5c2ded3bcf0.res" ]
+
+[params]
+
+delimiter=0
+enable_pseudo_localization=false
+pseudo_locale="eo"
+analysis_path="res://mods/cat_custompartners/translation_analysis.tres"

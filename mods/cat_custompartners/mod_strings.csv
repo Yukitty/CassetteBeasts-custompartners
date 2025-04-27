@@ -1,0 +1,14 @@
+key,en
+MOD_CAT_CUSTOMPARTNERS_NAME,Custom Partners
+CAT_CUSTOMPARTNERS_MANNEQUIN_NAME,Partner Mannequin
+CAT_CUSTOMPARTNERS_MANNEQUIN_MENU,Dressing this mannequin will bring it to life as a fusion partner.
+CAT_CUSTOMPARTNERS_MANNEQUIN_MENU_CREATE,Create a new partner.
+CAT_CUSTOMPARTNERS_MANNEQUIN_MENU_LOAD,View saved partners.
+CAT_CUSTOMPARTNERS_MANNEQUIN_MENU_END,Nevermind.
+CAT_CUSTOMPARTNERS_MANNEQUIN_LOAD_FAIL,You have no custom partners to load. Create a new partner first.
+CAT_CUSTOMPARTNERS_DEFAULT_NAME,Manny
+CAT_CUSTOMPARTNERS_MANNEQUIN_CREATED,A new custom partner has been created.
+CAT_CUSTOMPARTNERS_MANNEQUIN_NOTYET,What an odd mannequin... Is it waiting for something?
+UI_CAT_CUSTOMPARTNERS_LOAD_PARTNER,Load Partner
+UI_CAT_CUSTOMPARTNERS_MIMIC,Cutscene Partner
+CAT_CUSTOMPARTNERS_MANNEQUIN_STARTER,Choose a tape for the new partner to use.

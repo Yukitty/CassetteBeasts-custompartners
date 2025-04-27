@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://cutscenes/kayleigh_quest/KayleighQuest1_Part1.tscn" type="PackedScene" id=1]
+
+[node name="Cutscene" instance=ExtResource( 1 )]
+deny_partner_id = "cat_custompartner"
