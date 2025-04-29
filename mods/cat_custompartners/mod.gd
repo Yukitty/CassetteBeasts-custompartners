@@ -22,6 +22,8 @@ const REPLACE: Dictionary = {
 		"res://cutscenes/kayleigh_quest/KayleighQuest1_Part1.tscn",
 	"res://mods/cat_custompartners/kayleigh_quest1_part2.tscn":
 		"res://cutscenes/kayleigh_quest/KayleighQuest1_Part2.tscn",
+	"res://mods/cat_custompartners/battle_vortex.tscn":
+		"res://battle/backgrounds/BattleVortex.tscn",
 }
 
 
