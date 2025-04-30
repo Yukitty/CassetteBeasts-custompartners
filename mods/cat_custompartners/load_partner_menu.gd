@@ -147,6 +147,9 @@ func _on_EraseButton_pressed() -> void:
 		SaveState.party.cat_custompartners.erase(current_partner)
 		for tape in current_partner.tapes:
 			SaveState.tape_collection.add_tape(tape)
+			yield (GlobalMessageDialog.show_message(Loc.trf("UI_PARTY_TAPE_WAS_PUT_AWAY", {
+				"tape_name": tape.get_name()
+			})), "completed")
 		current_partner.tapes = []
 		current_partner = null
 		if partner_button_container.get_child_count() < 1:

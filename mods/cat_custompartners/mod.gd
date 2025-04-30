@@ -22,6 +22,8 @@ const REPLACE: Dictionary = {
 		"res://cutscenes/kayleigh_quest/KayleighQuest1_Part1.tscn",
 	"res://mods/cat_custompartners/kayleigh_quest1_part2.tscn":
 		"res://cutscenes/kayleigh_quest/KayleighQuest1_Part2.tscn",
+	"res://mods/cat_custompartners/aa_puppet_ai.gd":
+		"res://battle/ai/archangels/AAPuppetAI.gd",
 	"res://mods/cat_custompartners/battle_vortex.tscn":
 		"res://battle/backgrounds/BattleVortex.tscn",
 }
@@ -63,19 +65,3 @@ func init_content() -> void:
 	var table: Dictionary = Datatables.load("res://cutscenes/camping", "tscn").table
 	for path in CAMPING_CUTSCENES:
 		table[Datatables.get_db_key(path)] = load(path)
-
-	# Finish initialization later
-	assert(not SceneManager.preloader.singleton_setup_complete)
-	yield(SceneManager.preloader, "singleton_setup_completed")
-
-	# Add custom partner source
-	var custom_partner: Character = load("res://mods/cat_custompartners/custom_partner.tres")
-	SaveState.party.source_partners.append(custom_partner)
-	SaveState.party.initial_partner_levels[custom_partner.partner_id] = 10
-
-	# "Test World" party setup
-	custom_partner = custom_partner.duplicate()
-	custom_partner.name = tr(custom_partner.name)
-	SaveState.party._make_tapes_unique(custom_partner)
-	SaveState.party.partners.push_back(custom_partner)
-	SaveState.party.unlocked_partners.push_back(custom_partner.partner_id)
